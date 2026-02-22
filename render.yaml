@@ -1,23 +1,23 @@
+version: 1
 services:
   # Backend Service
   - type: web
     name: jo-backend
     env: node
     plan: free
-    region: singapore
     buildCommand: npm install
     startCommand: npm start
     envVars:
       - key: PORT
         value: 10000
       - key: MONGODB_URI
-        sync: false
+        fromVar: MONGODB_URI
       - key: JWT_SECRET
-        sync: false
+        fromVar: JWT_SECRET
       - key: EMAIL_USER
-        sync: false
+        fromVar: EMAIL_USER
       - key: EMAIL_PASS
-        sync: false
+        fromVar: EMAIL_PASS
       - key: EVENT_DATE
         value: 2026-09-01T09:00:00
     rootDirectory: backend
@@ -27,7 +27,6 @@ services:
     name: jo-frontend
     env: node
     plan: free
-    region: singapore
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
@@ -35,5 +34,11 @@ services:
         fromService:
           type: web
           name: jo-backend
-          property: host
+          property: url
     rootDirectory: frontend
+
+vars:
+  - key: MONGODB_URI
+  - key: JWT_SECRET
+  - key: EMAIL_USER
+  - key: EMAIL_PASS
