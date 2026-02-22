@@ -11,9 +11,15 @@ services:
       - key: PORT
         value: 10000
       - key: MONGODB_URI
-        sync: false # User must provide this in Render Dashboard
+        sync: false
       - key: JWT_SECRET
-        sync: false # User must provide this or generate one
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: EVENT_DATE
+        value: 2026-09-01T09:00:00
     rootDirectory: backend
 
   # Frontend Service (Next.js)
