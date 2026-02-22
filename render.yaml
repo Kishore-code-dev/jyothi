@@ -2,10 +2,9 @@ version: 1
 services:
   - type: web
     name: jo-backend
-    runtime: node
+    env: node
     plan: free
-    region: singapore
-    rootDirectory: backend
+    rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -20,10 +19,9 @@ services:
 
   - type: web
     name: jo-frontend
-    runtime: node
+    env: node
     plan: free
-    region: singapore
-    rootDirectory: frontend
+    rootDir: frontend
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
