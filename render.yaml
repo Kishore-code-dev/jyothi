@@ -1,8 +1,10 @@
+version: 1
 services:
   - type: web
     name: jo-backend
-    env: node
+    runtime: node
     plan: free
+    region: singapore
     rootDirectory: backend
     buildCommand: npm install
     startCommand: npm start
@@ -10,16 +12,17 @@ services:
       - key: PORT
         value: 10000
       - key: MONGODB_URI
-        sync: false
+        generateValue: true
       - key: JWT_SECRET
-        sync: false
+        generateValue: true
       - key: NODE_VERSION
         value: 20
 
   - type: web
     name: jo-frontend
-    env: node
+    runtime: node
     plan: free
+    region: singapore
     rootDirectory: frontend
     buildCommand: npm install && npm run build
     startCommand: npm start
@@ -28,6 +31,6 @@ services:
         fromService:
           type: web
           name: jo-backend
-          property: url
+          property: host
       - key: NODE_VERSION
         value: 20
