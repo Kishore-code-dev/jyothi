@@ -1,52 +1,33 @@
-version: 1
 services:
-  # Backend Service
   - type: web
     name: jo-backend
     env: node
     plan: free
+    rootDirectory: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
-      - key: NODE_VERSION
-        value: 20
       - key: PORT
         value: 10000
       - key: MONGODB_URI
-        fromVar: MONGODB_URI
+        sync: false
       - key: JWT_SECRET
-        fromVar: JWT_SECRET
-      - key: EMAIL_USER
-        fromVar: EMAIL_USER
-      - key: EMAIL_PASS
-        fromVar: EMAIL_PASS
-      - key: EVENT_DATE
-        value: 2026-09-01T09:00:00
-    rootDirectory: backend
+        sync: false
+      - key: NODE_VERSION
+        value: 20
 
-  # Frontend Service (Next.js)
   - type: web
     name: jo-frontend
     env: node
     plan: free
+    rootDirectory: frontend
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
-      - key: NODE_VERSION
-        value: 20
       - key: NEXT_PUBLIC_API_URL
         fromService:
           type: web
           name: jo-backend
-          property: host
-    rootDirectory: frontend
-
-vars:
-  - key: MONGODB_URI
-    default: "none"
-  - key: JWT_SECRET
-    default: "agentic-revolution-secret-key-2026"
-  - key: EMAIL_USER
-    default: "demo@example.com"
-  - key: EMAIL_PASS
-    default: "demo-pass"
+          property: url
+      - key: NODE_VERSION
+        value: 20
