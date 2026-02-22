@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --velvet-red: #7B1123;
+  --deep-burgundy: #5A0D18;
+  --soft-white: #F8F6F4;
+  --dark-text: #2A2A2A;
+}
+
+body {
+  background-color: var(--soft-white);
+  color: var(--dark-text);
+  font-family: var(--font-playfair), serif;
+  overflow-x: hidden;
+}
+
+.luxury-text-gradient {
+  background: linear-gradient(135deg, var(--velvet-red) 0%, var(--deep-burgundy) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.velvet-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(123, 17, 35, 0.1);
+  transition: all 0.8s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.velvet-card:hover {
+  border-color: var(--velvet-red);
+  box-shadow: 0 20px 40px rgba(123, 17, 35, 0.05);
+}
+
+/* Custom Selection */
+::selection {
+  background: var(--velvet-red);
+  color: var(--soft-white);
+}
+
+/* Lenis config for Royal Silk Scroll™ feel */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
