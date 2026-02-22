@@ -43,6 +43,10 @@ services:
 
 vars:
   - key: MONGODB_URI
+    default: "none"
   - key: JWT_SECRET
+    default: "agentic-revolution-secret-key-2026"
   - key: EMAIL_USER
+    default: "demo@example.com"
   - key: EMAIL_PASS
+    default: "demo-pass"

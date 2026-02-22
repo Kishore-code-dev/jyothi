@@ -28,9 +28,14 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/applications', require('./routes/application'));
 
 // Database Connection
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to Velvet Code Summit DB'))
-    .catch(err => console.error('DB Connection Error:', err));
+const dbUri = process.env.MONGODB_URI;
+if (dbUri && dbUri.includes('mongodb')) {
+    mongoose.connect(dbUri)
+        .then(() => console.log('Connected to Agentic Summit DB'))
+        .catch(err => console.error('DB Connection Error. Demo Mode active.', err));
+} else {
+    console.warn('⚠️ PROMPT: MONGODB_URI missing. Running in DEMO MODE (In-memory storage).');
+}
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
