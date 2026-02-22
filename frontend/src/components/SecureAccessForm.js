@@ -14,7 +14,8 @@ export default function SecureAccessForm() {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:3001/api/applications/register", {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+            const res = await fetch(`${apiUrl}/api/applications/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
