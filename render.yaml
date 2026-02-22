@@ -8,6 +8,8 @@ services:
     buildCommand: npm install
     startCommand: npm start
     envVars:
+      - key: NODE_VERSION
+        value: 20
       - key: PORT
         value: 10000
       - key: MONGODB_URI
@@ -30,11 +32,13 @@ services:
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
+      - key: NODE_VERSION
+        value: 20
       - key: NEXT_PUBLIC_API_URL
         fromService:
           type: web
           name: jo-backend
-          property: url
+          property: host
     rootDirectory: frontend
 
 vars:
